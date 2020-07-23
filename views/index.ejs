@@ -15,7 +15,7 @@
                 <label for="flight">Flight Number :</label>
                 <select name="flight" id="flight" class="flight" type="text" placeholder="flight #">
                     <option value="undefined">Select</option>
-                    <%flightNumbers.forEach((item) =>{ %>
+                    <%allFlights.forEach((item) =>{ %>
                         <option><%=item%></option>
                   <%  }) %>
                 </select>          

@@ -68,19 +68,26 @@ const toggleFormContent = (event) => {
   // TODO: Pass the response data to renderSeats to create the appropriate seat-type.
 };
 
-const handleConfirmSeat = (event) => {
+const handleConfirmSeat = async (event) => {
   event.preventDefault();
   // TODO: everything in here!
-  fetch("/users", {
+  let response = await fetch("/users", {
     method: "POST",
     body: JSON.stringify({
       givenName: document.getElementById("givenName").value,
+      surname: document.querySelector("#surname").value,
+      email: document.querySelector("#email").value,
+      seatNumber: document.querySelector("#seat-number").textContent,
+      flight: flightInput.value,
     }),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   });
+
+  let userId = await response.json();
+  window.location.assign(`/confirmed/${userId.id}`);
 };
 
 flightInput.addEventListener("blur", toggleFormContent);
